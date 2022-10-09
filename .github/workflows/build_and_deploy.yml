@@ -1,0 +1,23 @@
+name: build-and-deploy
+
+on: push
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.14.2"
+      - name: Setup token
+        run: |
+          npm config set access=public
+          npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+
+      - run: |
+          yarn
+          yarn build
+          npm version 1.0.${{ github.run_number }} --no-git-tag-version
+          npm publish
+        if: github.ref == 'refs/heads/main'
