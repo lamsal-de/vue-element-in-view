@@ -1,10 +1,19 @@
 # vue-element-in-view
 
-Vue3 plugin to trigger a function when an element enters the vue
+Vue3 plugin to trigger a function when an element enters the view. Lazily initializes 
+IntersectionObserver instances per used threshold.
 
 Features:
 - configurable threshold per directive
-- won't throw an error when used in SSR build, e.g. when used with vite-ssg
+- won't throw an error when used in SSR build, e.g. when used with vite-ssg, if configured.
+
+## Install
+
+`yarn install @lamsal-de/vue-element-in-view`
+
+`pnpm add @lamsal-de/vue-element-in-view`
+
+`npm install @lamsal-de/vue-element-in-view`
 
 ## Usage
 
